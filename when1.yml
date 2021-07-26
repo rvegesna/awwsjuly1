@@ -1,0 +1,14 @@
+---
+- hosts: server2.abc.com 
+  remote_user: test1000
+  become: yes
+  tasks:
+      - meta: end_play 
+        when: ansible_os_family == 'RedHat'
+      - name: Install apache2 package
+        apt: name=apache2 state=installed
+        when: ansible_os_family == 'Debian'
+      - name: copy index.html
+        copy: src=index.html dest=/var/www/html
+      - name: start the service
+        service: name=httpd state=started 
