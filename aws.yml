@@ -1,0 +1,2 @@
+-- hosts: aws
+   remote_user: test1000
